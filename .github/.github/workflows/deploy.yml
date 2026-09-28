@@ -28,11 +28,13 @@ jobs:
         working-directory: frontend
         run: npm install
 
+      - name: Fix Vite permission
+        working-directory: frontend
+        run: chmod +x node_modules/vite/bin/vite.js
+
       - name: Build frontend
-      working-directory: frontend
-      run: |
-          chmod -R 755 node_modules
-          ./node_modules/.bin/vite build
+        working-directory: frontend
+        run: node node_modules/vite/bin/vite.js build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
